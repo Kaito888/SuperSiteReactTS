@@ -1,0 +1,9 @@
+.graph3d-ui {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 450px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: #0004;
+}
