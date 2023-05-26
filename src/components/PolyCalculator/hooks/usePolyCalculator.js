@@ -1,4 +1,4 @@
-import PolynomialCalculator from '../../../modules/PolyCalculator/PolynomialCalculator';
+import PolynomialCalculator from '../../../modules/PolyCalculator/PolynomialCalculator.ts';
 
 export default function usePolyCalculator(polyA, polyB) {
     const calc = new PolynomialCalculator();

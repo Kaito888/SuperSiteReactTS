@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 import usePolyCalculatorPoint from "./hooks/usePolyCalculatorPoint";
 import usePolyCalculator from "./hooks/usePolyCalculator";
-import MyButton from "../components/MyButton/MyButton";
+import MyButton from "../components/MyButton/MyButton.tsx";
 
 const PolyCalculator = () => {
     const polyA = useRef(null);

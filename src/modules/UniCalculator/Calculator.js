@@ -1,9 +1,9 @@
-import RealCalculator from "./RealCalculator";
-import Complex from "./Complex";
+import RealCalculator from "./RealCalculator.ts";
+import Complex from "./Complex.ts";
 import ComplexCalculator from "./ComplexCalculator";
-import Vector from "./Vector";
+import Vector from "./Vector.ts";
 import VectorCalculator from "./VectorCalculator";
-import Matrix from "./Matrix";
+import Matrix from "./Matrix.ts";
 import MatrixCalculator from "./MatrixCalculator";
 
 export default class Calculator {

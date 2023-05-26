@@ -1,11 +1,11 @@
 import { useState, useCallback } from "react";
-import useFigureNames from "./useFigureNames";
-import useCheckBoxesOptions from "./useCheckBoxesOptions";
+import useFigureNames from "./useFigureNames.ts";
+import useCheckBoxesOptions from "./useCheckBoxesOptions.ts";
 
-import MyCheckbox from "../../components/MyCheckbox/MyCheckbox";
-import MyInput from "../../components/MyInput/MyInput";
-import MySlider from "../../components/MySlider/MySlider";
-import MyButton from "../../components/MyButton/MyButton";
+import MyCheckbox from "../../components/MyCheckbox/MyCheckbox.tsx";
+import MyInput from "../../components/MyInput/MyInput.tsx";
+import MySlider from "../../components/MySlider/MySlider.tsx";
+import MyButton from "../../components/MyButton/MyButton.tsx";
 
 import "./Graph3DUI.css";
 

@@ -1,7 +1,6 @@
 import { useRef, useState, useCallback } from "react";
 
-import GraphSettings from "./GraphSettings/GraphSettings";
-import MyButton from "../../components/MyButton/MyButton";
+import MyButton from "../../components/MyButton/MyButton.tsx";
 
 import './Graph2DUI.css';
 
@@ -15,9 +14,57 @@ const Graph2DUI = ({ addFunction, delFunction, setColorFunction, changeZeroAndDe
     const graphWidth = useRef(null);
 
     const addFunctionHandler = () => {
-        const funcSettings = GraphSettings({ num, keyUpHandler, keyUpSetColorHandler, keyUpSegmentAHandler, keyUpSegmentBHandler, changeZeroAndDerivativeHandler, delFunction });
-        console.log(funcSettings);
-        funcsInputs.current.appendChild(funcSettings);
+        //set function
+        const input = document.createElement('input');
+        input.dataset.num = num;
+        input.placeholder = 'функция';
+        input.addEventListener('keyup', (event) => keyUpHandler(event));
+        //set function color
+        const inputColor = document.createElement('input');
+        inputColor.placeholder = 'цвет';
+        inputColor.dataset.num = num;
+        inputColor.addEventListener('keyup', (event) => keyUpSetColorHandler(event));
+        //set zero
+        const a = document.createElement('input');
+        a.placeholder = 'a';
+        a.dataset.num = num;
+        a.addEventListener('keyup', (event) => keyUpSegmentAHandler(event));
+
+        const b = document.createElement('input');
+        b.placeholder = 'b';
+        b.dataset.num = num;
+        b.addEventListener('keyup', (event) => keyUpSegmentBHandler(event));
+
+        //checkbox
+        const needDerivative = document.createElement('input');
+        needDerivative.type = 'checkbox';
+        needDerivative.dataset.num = num;
+        needDerivative.addEventListener('click', (event) => changeZeroAndDerivativeHandler(event));
+
+        const button = document.createElement('button');
+        button.innerHTML = 'Удалить';
+        button.classList.add('deleteButton');
+        button.addEventListener('click', () => {
+            div.removeChild(input);
+            div.removeChild(inputColor);
+            div.removeChild(a);
+            div.removeChild(b);
+            div.removeChild(button);
+            div.removeChild(needDerivative);
+            div.removeChild(br);
+            delFunction(input.dataset.num);
+        });
+
+        const br = document.createElement('br');
+
+        const div = funcsInputs.current;
+        div.appendChild(needDerivative);
+        div.appendChild(input);
+        div.appendChild(inputColor);
+        div.appendChild(a);
+        div.appendChild(b);
+        div.appendChild(button);
+        div.appendChild(br);
         num++;
     }
 

@@ -1,4 +1,4 @@
-import Matrix from "./Matrix";
+import Matrix from "./Matrix.ts";
 import ComplexCalculator from "./ComplexCalculator";
 
 export default class MatrixCalculator extends ComplexCalculator {

@@ -1,38 +1,86 @@
-.App {
+body {
+  background: url('./asserts/bg16.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+button {
+  border: solid 2px rgb(54, 29, 196);
+  border-radius: 10px;
+  background:rgb(232, 228, 255);
+}
+
+button:hover {
+  background:rgb(255, 200, 200);
+}
+
+input {
+  border: solid 2px rgb(93, 69, 226);
+  border-radius: 10px;
+}
+
+textarea {
+  border: solid 2px rgb(93, 69, 226);
+  border-radius: 10px;
+}
+
+.content-item {
+  border: solid 2px rgb(78, 55, 209);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.figureAnimCenter {
+  width: 30px;
+}
+
+.deleteButton {
+  border: solid 2px rgb(201, 104, 104);
+  border-radius: 10px;
+  background:rgb(255, 228, 228);
+}
+
+.closeButton {
+  border: solid 2px rgb(187, 73, 73);
+  border-radius: 10px;
+  background:rgb(231, 173, 173);
+}
+
+.figure {
+  border: solid 2px rgb(54, 29, 196);
+  border-radius: 10px;
+  background:rgb(232, 228, 255);
+  width: 220px;
+}
+
+.dropdown {
+  border: solid 2px rgb(54, 29, 196);
+  border-radius: 10px;
+  background:rgb(232, 228, 255);
+}
+
+.popUp {
+width: 800px;
+height: 700px;
+text-align: left;
+position: fixed;
+left: 50%;
+  top: 30;
+padding: 35px;
+background: rgb(159, 168, 255);
+  border: solid 2px rgb(44, 52, 124);
+border-radius: 10px;
+}
+
+.BGpopUp {
+  width: 300px;
+  height: 730px;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  position: fixed;
+  left: 30%;
+  top: 10%;
+  padding: 35px;
+  background: rgb(105, 120, 250);
+  border: solid 2px rgb(44, 52, 124);
+  border-radius: 10px;
+  opacity: 70%;
 }

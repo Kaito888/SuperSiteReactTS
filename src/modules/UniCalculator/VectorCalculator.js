@@ -1,5 +1,5 @@
-import Vector from "./Vector";
-import ComplexCalculator from "./ComplexCalculator";
+import Vector from "./Vector.ts";
+import ComplexCalculator from "./ComplexCalculator.js";
 
 export default class VectorCalculator extends ComplexCalculator {
     constructor(calc = new ComplexCalculator()) {

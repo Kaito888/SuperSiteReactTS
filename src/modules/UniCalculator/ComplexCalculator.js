@@ -1,6 +1,7 @@
-import Complex from "./Complex";
+import Complex from "./Complex.ts";
+import RealCalculator from "./RealCalculator.ts";
 
-export default class ComplexCalculator {
+export default class ComplexCalculator extends RealCalculator {
     add(a, b) {
         return new Complex(a.re + b.re, a.im + b.im);
     }

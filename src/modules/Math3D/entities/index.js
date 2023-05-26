@@ -1,7 +1,7 @@
-import Point from './Point';
-import Edge from './Edge';
-import Polygon from './Polygon';
-import Light from './Light';
-import Figure from './Figure'
+import Point from './Point.ts';
+import Edge from './Edge.ts';
+import Polygon, { EDistance } from './Polygon.ts';
+import Light from './Light.ts';
+import Figure from './Figure.ts'
 
-export { Point, Edge, Polygon, Light, Figure };
+export { Point, Edge, Polygon, Light, Figure, EDistance };

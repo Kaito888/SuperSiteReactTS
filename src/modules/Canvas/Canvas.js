@@ -15,11 +15,10 @@ export default class Canvas {
         this.xs = (x) => (x - WIN.left) / WIN.width * this.canvas.width;
         this.ys = (y) => (-y - WIN.bottom) / WIN.height * this.canvas.height;
 
-        const { wheel, mouseUp, mouseDown, mouseMove, mouseLeave, dblclick } = callbacks;
+        const { wheel, mouseUp, mouseDown, mouseMove, mouseLeave } = callbacks;
         this.canvas.addEventListener('wheel', wheel);
         this.canvas.addEventListener('mouseup', mouseUp);
         this.canvas.addEventListener('mousedown', mouseDown);
-        this.canvas.addEventListener('dblclick', dblclick);
         this.canvas.addEventListener('mousemove', mouseMove);
         this.canvas.addEventListener('mouseleave', mouseLeave);
     }
@@ -31,7 +30,7 @@ export default class Canvas {
 
     //декартовая в канвас
     sx = (x) => x * this.WIN.width / this.canvas.width;
-    sy = (y) => -y * this.WIN.height / this.canvas.height;
+    sy = (y) => y * this.WIN.height / this.canvas.height;
 
     line(x1, y1, x2, y2, color, width, isDash) {
         this.ctxV.beginPath();

@@ -1,32 +1,21 @@
-import { useEffect, useRef } from "react";
-import useFigureOptions from "./useFigureOptions";
+import { useEffect } from "react";
+
+import useFigureOptions from "./useFigureOptions.ts";
 
 import Math3D, {
   Point,
   Light,
-  Cube,
   Sphere,
-  Cone,
-  CylinderEll,
-  CylinderHyp,
-  CylinderPar,
-  Ellipsoid,
-  HyperboloidOne,
-  HyperboloidTwo,
-  ParaboloidEll,
-  ParaboloidHyp,
   Torus,
 } from "../../modules/Math3D";
-import useCanvas from "../../modules/Canvas/useCanvas";
+import useCanvas from "../../modules/Canvas/useCanvas.ts";
 
 import Graph3DUI from "./Graph3DUI/Graph3DUI";
 
 const Graph3D = () => {
   const zoom = 0.8;
   const rotate = 0.01;
-  const drag = 0.05;
   let canMove = false;
-  let canDrag = false;
   let canAnimate = true;
 
   const show = {
@@ -58,12 +47,11 @@ const Graph3D = () => {
       id: "canvas3D",
       width: 800,
       height: 800,
-      WIN: WIN,
+      WIN,
       callbacks: {
         wheel,
         mouseUp,
         mouseDown,
-        dblclick,
         mouseMove,
         mouseLeave,
       },
@@ -109,36 +97,22 @@ const Graph3D = () => {
   const mouseUp = () => {
     canMove = false;
   };
-  const dblclick = () => {
-    canDrag = !canDrag;
-  };
   const mouseLeave = () => {
     canMove = false;
-    canDrag = false;
   };
   const mouseMove = (event) => {
-    if (!canAnimate) {
-      if (canDrag) {
-        const { movementX, movementY } = event;
+    if (!canAnimate && canMove) {
+      const { movementX, movementY } = event;
 
-        const matrix = math3D.drag(movementX * drag, -movementY * drag);
+      const matrixX = math3D.rotateOx(movementY * rotate);
+      const matrixY = math3D.rotateOy(movementX * rotate);
 
-        scene.forEach((figure) =>
-          figure.points.forEach((point) => math3D.transform(matrix, point))
-        );
-      } else if (canMove) {
-        const { movementX, movementY } = event;
-
-        const matrixX = math3D.rotateX(movementY * rotate);
-        const matrixY = math3D.rotateY(movementX * rotate);
-
-        scene.forEach((figure) =>
-          figure.points.forEach((point) => math3D.transform(matrixX, point))
-        );
-        scene.forEach((figure) =>
-          figure.points.forEach((point) => math3D.transform(matrixY, point))
-        );
-      }
+      scene.forEach((figure) =>
+        figure.points.forEach((point) => math3D.transform(matrixX, point))
+      );
+      scene.forEach((figure) =>
+        figure.points.forEach((point) => math3D.transform(matrixY, point))
+      );
     }
   };
 
@@ -154,7 +128,7 @@ const Graph3D = () => {
     earth.points.forEach((point) => {
       point.x += 15;
     });
-    const matrix = math3D.rotateZ(250);
+    const matrix = math3D.rotateOz(250);
     moon.points.forEach((point) => {
       math3D.transform(matrix, point);
       point.x += 21;
@@ -167,10 +141,10 @@ const Graph3D = () => {
     math3D.calcCenter(earth);
     math3D.calcCenter(moon);
 
-    earth.setAnimation("rotateZ", 0.01);
-    earth.setAnimation("rotateZ", 0.01, new Point());
+    earth.setAnimation("rotateOz", 0.01);
+    earth.setAnimation("rotateOz", 0.01, new Point());
 
-    moon.setAnimation("rotateZ", 0.05, earth.center);
+    moon.setAnimation("rotateOz", 0.05, earth.center);
 
     scene = [];
     scene[0] = earth;
@@ -226,8 +200,8 @@ const Graph3D = () => {
         LIGHT.forEach((light, i) => {
           const distance = Math.sqrt(
             Math.pow(light.x - polygon.center.x, 2) +
-              Math.pow(light.y - polygon.center.y, 2) +
-              Math.pow(light.z - polygon.center.z, 2)
+            Math.pow(light.y - polygon.center.y, 2) +
+            Math.pow(light.z - polygon.center.z, 2)
           );
           polygon.lumen[i] = math3D.calcIllumination(distance, light.lumen);
         });
@@ -246,8 +220,8 @@ const Graph3D = () => {
             const bLight = light.color.b;
             const distance = Math.sqrt(
               Math.pow(light.x - polygon.center.x, 2) +
-                Math.pow(light.y - polygon.center.y, 2) +
-                Math.pow(light.z - polygon.center.z, 2)
+              Math.pow(light.y - polygon.center.y, 2) +
+              Math.pow(light.z - polygon.center.z, 2)
             );
 
             const { isShadow, dark } = canPrintShadows
@@ -339,7 +313,6 @@ const Graph3D = () => {
   };
 
   const figureChangeHandler = (value) => {
-    //!!!hook
     if (value === "SolarSystem") {
       setSolarSystem();
     } else {
@@ -358,10 +331,11 @@ const Graph3D = () => {
     );
   };
 
+  //!!!cant use hook in function but need to create figures w dif detalization every time
   const figureCountChangeHandler = (value) => {
     const fig = scene[0].constructor.name;
     figureOptions.forEach((figure) => {
-      if (figure.type === fig) return (scene = [figure.result(value)]);
+      if (figure.type === fig) return (scene = [figure.result]);
     });
   };
 

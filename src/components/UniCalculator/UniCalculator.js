@@ -1,13 +1,14 @@
 import { useRef } from "react";
 
-import useUniCalculator from "./useUniCalculator";
+import useUniCalculator from "./useUniCalculator.js";
 
-import MyButton from "../components/MyButton/MyButton";
+import MyButton from "../components/MyButton/MyButton.tsx";
 
 const UniCalculator = () => {
     const refA = useRef(null);
     const refB = useRef(null);
     const calc = useUniCalculator(refA, refB);
+    console.log(refA, refA.current);
 
     const operands = [
         {

@@ -1,5 +1,5 @@
 import Calculator from '../../../modules/UniCalculator/Calculator';
-import PolynomialCalculator from '../../../modules/PolyCalculator/PolynomialCalculator';
+import PolynomialCalculator from '../../../modules/PolyCalculator/PolynomialCalculator.ts';
 
 export default function usePolyCalculatorPoint(polyPoint, polyA) {
     const calc = new PolynomialCalculator();
